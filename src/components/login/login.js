@@ -29,6 +29,7 @@ const Login = () => {
 
     const onSubmit = async () => {
         const accesUserData = await loginService(data);
+        // console.log(accesUserData)
         setAcess(accesUserData[0]);
         setUserData(accesUserData[1]);
     }
