@@ -5,16 +5,7 @@
     height: 100vh;
 }
 
-.title {
-    display: flex;
-    position: relative;
-    margin: 0;
-    width: 100%;
-    justify-content: center;
-    background-color: rgb(84, 235, 255);
-    color: #ffffff;
-    font-size: 48px;
-}
+
 
 .nav-top {
     display: block;
@@ -44,29 +35,7 @@
     background-color: rgb(0, 217, 255);
 }
 
-.user {
-    display: flex;
-    justify-content:space-between;
-    height: 100px;
-    padding: 2px;
-    padding-right: 5px;
-    background-color: #c8c8c8;
-    border: 2px solid black;
-    border-radius: 5px;
-}
-.control-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    
-}
-.add-post-button {
-    margin: 2px;
-    width: auto;
-    height: 25px;
-    display: block;
-}
 
 .friends-container{
     padding: 2px;

@@ -1,7 +1,7 @@
 
 import './main.css';
-import img from './bird.png';
-import friendsService from '../services/friendsService';
+// import img from './bird.png';
+import friendsService from '../../services/friendsService';
 import { useEffect, useState } from 'react';
 import User from '../user/user';
 
@@ -28,10 +28,10 @@ const Main = ({ props }) => {
     return (
 
         <div className="main-container">
-            <header className="title">
+            {/* <header className="title">
                 <span>BiRdie </span>
                 <img src={img} alt="logo" width="32" height="32" />
-            </header>
+            </header> */}
             {/* <nav className="nav-top">навігація</nav> */}
             <div className='content-container'>
                 {/* <aside className='content-left'>контент зліва</aside> */}

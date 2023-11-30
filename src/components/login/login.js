@@ -1,84 +1,72 @@
 
 import { useState } from 'react';
 
-
 import './login.css';
-import loginService from '../services/loginService';
-// import registerService from '../services/registerService';
+import loginService from '../../services/loginService';
+import registerService from '../../services/registerService';
 import Main from '../main/Main';
+import LoginForm from './login-form';
+import RegisterForm from './register-form';
 
 
 
 const Login = () => {
 
-    const [data, setData] = useState({
-        login: '',
-        pass: '',
-        reg: false
-    });
+    // const [data, setData] = useState({
+    //     login: '',
+    //     pass: ''
+    // });
 
-    const [acces, setAcess] = useState(0);
+
+    const [reg, setReg] = useState(false);
+    const [acces, setAcess] = useState(false);
     const [userData, setUserData] = useState({});
 
-    const handleChange = (e) => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
+    // const handleChange = (e) => {
+    //     setData({
+    //         ...data,
+    //         [e.target.name]: e.target.value
+    //     });
+    // }
+
+    const onReg = (e) => {
+        setReg(e.target.checked)
     }
 
-    const onSubmit = async () => {
-        const accesUserData = await loginService(data);
-        // console.log(accesUserData)
-        setAcess(accesUserData[0]);
-        setUserData(accesUserData[1]);
+    const onSubmit = async (data) => {
+        console.log(data)
+        if (!reg) {
+            const accesUserData = await loginService(data);
+            console.log(accesUserData)
+            // setAcess(accesUserData[0]);
+            // setUserData(accesUserData[1]);
+        } else {
+            const newUserData = await registerService(data);
+            console.log(newUserData)
+            // setUserData(newUserData[0]);
+            // setUserData(newUserData[1]);
+        }
     }
+
 
 
     if (!acces) {
         return (
             <div className="login-container">
-                <h3 className="login-title">Login</h3>
-                <form
-                    action=''
-                    target='_self'
-                    className="form-container"
-                    method='post'
-                    onSubmit={(e) => { console.log(e) }}>
-                    Login:<input
-                        className="login-input"
-                        name='login'
-                        type="text"
-                        // defaultValue=''
-                        onChange={handleChange}
-                        autoComplete='none'
-                    /><br></br>
-                    Password:<input
-                        className="login-input"
-                        name='pass'
-                        type="password"
-                        // defaultValue=''
-                        onChange={handleChange}
-                        autoComplete='none'
-                    />
-                    <label>
-                        Registration
-                        <input
-                            className=''
-                            name='reg'
-                            type="checkbox"
-                            // checked={reg}
-                            onChange={handleChange}
-                        />
-                    </label>
+                {
+                    reg ? <RegisterForm onSubmit={onSubmit} />
+                        : <LoginForm handleChange={onSubmit} />
+                }
 
-                </form>
-                <button
-                    className='submit-button'
-                    onClick={onSubmit}
-                >
-                    Ok
-                </button>
+                <label>
+                    Registration
+                    <input
+                        className=''
+                        name='reg'
+                        type="checkbox"
+                        onChange={onReg}
+                    />
+                </label>
             </div>
         );
 

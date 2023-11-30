@@ -6,7 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #c8c8c8;
+  background-image: url("./img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  
 }
 
 code {
@@ -16,10 +20,10 @@ code {
 
 #root {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(228, 219, 172, 0.842);
 }
 
 h4 {

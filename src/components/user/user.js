@@ -1,11 +1,8 @@
-
+import './user.css';
 
 const User = ({ props, url }) => {
 
-
     const { avatar, friends, login } = props;
-
-
 
     return (
         <div className='user'>
