@@ -7,7 +7,7 @@ const User = ({ props, url }) => {
     return (
         <div className='user'>
             <img
-                src={url + avatar}
+                src='/avatars/269312438.png'
                 alt="img"
                 width='100'
                 height='100'

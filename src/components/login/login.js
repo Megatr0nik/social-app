@@ -12,12 +12,6 @@ import RegisterForm from './register-form';
 
 const Login = () => {
 
-    // const [data, setData] = useState({
-    //     login: '',
-    //     pass: ''
-    // });
-
-
     const [reg, setReg] = useState(false);
     const [acces, setAcess] = useState(false);
     const [userData, setUserData] = useState({});
@@ -34,7 +28,7 @@ const Login = () => {
     }
 
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         if (!reg) {
             const accesUserData = await loginService(data);
             console.log(accesUserData)
@@ -55,7 +49,7 @@ const Login = () => {
             <div className="login-container">
                 {
                     reg ? <RegisterForm onSubmit={onSubmit} />
-                        : <LoginForm handleChange={onSubmit} />
+                        : <LoginForm onSubmit={onSubmit} />
                 }
 
                 <label>

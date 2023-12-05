@@ -1,8 +1,22 @@
 
 
+import { useState } from 'react';
 import './login.css';
 
-const LoginForm = ({ handleChange }) => {
+const LoginForm = ({ onSubmit }) => {
+
+    const [data, setData] = useState({});
+
+    const handleChange = (e) => {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const onLogin = () => {
+        onSubmit(data);
+    }
 
 
     return (
@@ -17,7 +31,7 @@ const LoginForm = ({ handleChange }) => {
                 onSubmit={(e) => { console.log(e) }}>
                 Login:<input
                     className="login-input"
-                    name='login'
+                    name='email'
                     type="text"
                     onChange={handleChange}
                     autoComplete='none'
@@ -29,6 +43,12 @@ const LoginForm = ({ handleChange }) => {
                     onChange={handleChange}
                     autoComplete='none'
                 />
+                <button
+                    className='submit-button'
+                    onClick={onLogin}
+                >
+                    Ok
+                </button>
             </form>
         </>
 

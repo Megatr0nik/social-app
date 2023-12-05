@@ -6,11 +6,11 @@ import './login.css';
 const RegisterForm = ({ onSubmit }) => {
     const [newUser, setNewUser] = useState(
         {
-            // name: '',
-            // lastname: '',
-            // login: '',
-            // pass: '',
-            // pass2: ''
+            id: '',
+            phoneNum: '',
+            avatar: '',
+            friends: [],
+            post: []
         }
     );
 
@@ -35,9 +35,9 @@ const RegisterForm = ({ onSubmit }) => {
                 className="form-container"
                 // method='post'
                 onSubmit={(e) => { console.log(e) }}>
-                Name:<input
+                First name:<input
                     className="login-input"
-                    name='name'
+                    name='firstname'
                     type="text"
                     onChange={handleNewUser}
                     autoComplete='none'
@@ -51,7 +51,7 @@ const RegisterForm = ({ onSubmit }) => {
                 />
                 Mail:<input
                     className="login-input"
-                    name='login'
+                    name='email'
                     type="email"
                     onChange={handleNewUser}
                     autoComplete='none'
