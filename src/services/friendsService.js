@@ -5,28 +5,27 @@ import './services.css';
 
 const friendsService = (url, friends) => {
 
-    const data = axios.post(url, friends)
+    const data = axios.post(`${url}friends/`, friends)
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             return response.data.map(user => {
+                // console.log(user)
                 return (
                     <div className='friend'>
 
                         <img
                             className="user-img"
-                            style={{ pointerEvents: 'none' }}
-                            src={url + user.avatar}
+                            src={`${url}avatars/${user.avatar}`}
                             alt="img"
                             width='50'
                             height='50'
-                            title={user.login}
+                            title={`${user.firstName} ${user.lastName}`}
                         />
 
                         <div
-                            style={{ pointerEvents: 'none' }}
                             className="post-info"
                         >
-                            {user.post[0].title}
+                            {user.post[0] ? user.post[0].title : 'Поки нема нічого'}
                         </div>
                     </div >
                 )

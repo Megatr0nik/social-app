@@ -7,7 +7,7 @@ import User from '../user/user';
 
 
 
-const BASE_URL = 'http://localhost:8000/friends/'
+const BASE_URL = 'http://localhost:8000/'
 
 
 const Main = ({ props }) => {
@@ -19,7 +19,7 @@ const Main = ({ props }) => {
     console.log(friends);
 
     useEffect(() => {
-        friendsService('/friends', friends)
+        friendsService(`${BASE_URL}`, friends)
             .then(item => {
                 setFriends(item);
             });
@@ -42,7 +42,7 @@ const Main = ({ props }) => {
 
                     <div className='friends-container'>
                         <h4>Друзі</h4>
-                        {/* {friendsUser} */}
+                        {friendsUser}
                     </div>
 
                 </aside>

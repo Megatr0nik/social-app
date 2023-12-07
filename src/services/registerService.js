@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const _URL = 'http://localhost:8000/person';
+const _URL = 'http://localhost:8000/';
 
 
 const registerService = async (regData) => {
