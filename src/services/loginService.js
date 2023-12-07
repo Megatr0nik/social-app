@@ -2,13 +2,11 @@ import axios from 'axios';
 
 const _URL = 'http://localhost:8000';
 
-const loginService = (loginData) => {
+const loginService = async (loginData) => {
 
-    const data = axios.post(_URL, loginData)
+    return await axios.post('/login', loginData, { baseURL: _URL })
         .then(respon => respon.data)
         .catch(err => console.log(err));
-
-    return data;
 }
 
 export default loginService;

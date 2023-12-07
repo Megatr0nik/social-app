@@ -7,19 +7,19 @@ import User from '../user/user';
 
 
 
-const BASE_URL = 'http://localhost:8000/userdb/'
+const BASE_URL = 'http://localhost:8000/friends/'
 
 
 const Main = ({ props }) => {
 
     const [friendsUser, setFriends] = useState([]);
 
-    const { avatar, friends, login } = props;
+    const { avatar, friends, email } = props;
 
-    console.log(props);
+    console.log(friends);
 
     useEffect(() => {
-        friendsService(BASE_URL, friends)
+        friendsService('/friends', friends)
             .then(item => {
                 setFriends(item);
             });
@@ -42,7 +42,7 @@ const Main = ({ props }) => {
 
                     <div className='friends-container'>
                         <h4>Друзі</h4>
-                        {friendsUser}
+                        {/* {friendsUser} */}
                     </div>
 
                 </aside>

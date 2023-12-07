@@ -11,6 +11,39 @@
     box-sizing: border-box;
 }
 
+.warning-info {
+    display: none;
+    color: black;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    animation-name: hide;
+    animation-duration: 5.2s;
+    animation-timing-function:ease;
+}
+
+@keyframes hide {
+    from {
+        opacity: 0;
+        color: black;
+    }
+    25% {
+        opacity: 1;
+        color: red;
+    }
+    50%{
+        opacity: 1;
+        color: black;
+    }
+    75%{
+        opacity: 1;
+        color: red;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 .login-title {
     margin-bottom: 10px;
 }

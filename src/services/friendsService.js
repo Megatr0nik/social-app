@@ -7,6 +7,7 @@ const friendsService = (url, friends) => {
 
     const data = axios.post(url, friends)
         .then(response => {
+            console.log(response.data);
             return response.data.map(user => {
                 return (
                     <div className='friend'>

@@ -1,4 +1,7 @@
 import './user.css';
+// import default_ava from '../../img/default_ava.jpg';
+
+
 
 const User = ({ props, url }) => {
 
@@ -7,7 +10,7 @@ const User = ({ props, url }) => {
     return (
         <div className='user'>
             <img
-                src={url + avatar}
+                src={'/avatars/' + avatar}
                 alt="img"
                 width='100'
                 height='100'

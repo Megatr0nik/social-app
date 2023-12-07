@@ -12,62 +12,81 @@ import RegisterForm from './register-form';
 
 const Login = () => {
 
-    // const [data, setData] = useState({
-    //     login: '',
-    //     pass: ''
-    // });
-
-
     const [reg, setReg] = useState(false);
     const [acces, setAcess] = useState(false);
     const [userData, setUserData] = useState({});
+    const [wrong, setWrong] = useState({ warning: false, data: '' });
 
-    // const handleChange = (e) => {
-    //     setData({
-    //         ...data,
-    //         [e.target.name]: e.target.value
-    //     });
-    // }
+
 
     const onReg = (e) => {
         setReg(e.target.checked)
     }
 
-    const onSubmit = async (data) => {
-        console.log(data)
-        if (!reg) {
-            const accesUserData = await loginService(data);
-            console.log(accesUserData)
-            // setAcess(accesUserData[0]);
-            // setUserData(accesUserData[1]);
+    const onWarning = (warnStr) => {
+        setWrong({ warning: true, data: warnStr });
+        setTimeout(() => setWrong({ warning: false, data: '' }), 5000);
+    }
+
+    const onSubmit = (data) => {
+
+        if (reg === false) {
+            console.log(data)
+            loginService([reg, data])
+                .then(d => {
+
+                    if (typeof d[1] === 'string') {
+                        console.log(d)
+                        setReg(d[0]);
+                        setAcess(d[0]);
+                        onWarning(d[1]);
+                    } else {
+                        setAcess(!d[0]);
+                        setUserData(d[1]);
+                    }
+                }).catch(err => console.log(err));
         } else {
-            const newUserData = await registerService(data);
-            console.log(newUserData)
-            // setUserData(newUserData[0]);
-            // setUserData(newUserData[1]);
+            registerService([reg, data])
+                .then(d => {
+                    if (typeof d[1] === 'string') {
+                        onWarning(d[1]);
+                    } else {
+                        setReg(!d[0]);
+                        setAcess(d[0]);
+                        setUserData(d[1]);
+                    }
+
+                })
+                .catch(err => console.log(err));
         }
     }
 
-
-
     if (!acces) {
         return (
-            <div className="login-container">
-                {
-                    reg ? <RegisterForm onSubmit={onSubmit} />
-                        : <LoginForm handleChange={onSubmit} />
-                }
+            <>
+                {<h3 className='warning-info'
+                    style={wrong.warning ? { display: 'flex' } : { display: 'none' }}
+                >
+                    {wrong.data}
+                </h3>}
+                <div className="login-container">
+                    {
+                        reg ? <RegisterForm onSubmit={onSubmit} />
+                            : <LoginForm onSubmit={onSubmit} />
+                    }
+                    <label>
+                        Registration
+                        <input
+                            className=''
+                            name='reg'
+                            type="checkbox"
+                            checked={reg}
+                            onChange={onReg}
+                        />
+                    </label>
+                </div>
+            </>
 
-                <label>
-                    Registration
-                    <input
-                        className=''
-                        name='reg'
-                        type="checkbox"
-                        onChange={onReg}
-                    />
-                </label>
-            </div>
         );
 
     } else {
