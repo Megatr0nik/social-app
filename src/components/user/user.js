@@ -1,14 +1,18 @@
 import './user.css';
-import default_ava from '../../img/default_ava.jpg';
+// import default_ava from '../../img/default_ava.jpg';
 
 
 
-const User = ({ props, url }) => {
+const User = ({ props, url, setGallery, gallery }) => {
 
     const { avatar, friends, firstName, lastName } = props;
 
+    const onGallery = () => {
+        setGallery(!gallery);
+    }
+
     return (
-        <div className='user'>
+        <div className='user' onMouseEnter={e => e.preventDefault()}>
             <img
                 src={`${url}avatars/${avatar}`}
                 alt="img"
@@ -27,6 +31,7 @@ const User = ({ props, url }) => {
                 <button
                     className='add-post-button'
                     title='gallery'
+                    onClick={onGallery}
                 >
                     Галерея
                 </button>

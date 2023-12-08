@@ -7,11 +7,10 @@ const friendsService = (url, friends) => {
 
     const data = axios.post(`${url}friends/`, friends)
         .then(response => {
-            // console.log(response.data);
-            return response.data.map(user => {
-                // console.log(user)
+            return response.data.map((user, id) => {
+
                 return (
-                    <div className='friend'>
+                    <div className='friend' key={`u${id}`}>
 
                         <img
                             className="user-img"
