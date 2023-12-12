@@ -10,7 +10,6 @@
     transition: border-color 0.5s ease;
 }
 
-
 .friend:hover {
     border-color: rgba(0, 4, 252, 0.267)
 }

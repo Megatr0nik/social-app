@@ -5,6 +5,8 @@ import './user.css';
 
 const User = ({ props, url, setGallery, gallery }) => {
 
+    console.log('user', props)
+
     const { avatar, friends, firstName, lastName, _id } = props;
 
     const onGallery = () => {
@@ -14,7 +16,7 @@ const User = ({ props, url, setGallery, gallery }) => {
     return (
         <div className='user' onMouseEnter={e => e.preventDefault()}>
             <img
-                src={`${url}/user/${_id}/avatar/${avatar}`}
+                src={`${url}user/${_id}/avatar/${avatar}`}
                 alt="img"
                 width='100'
                 height='100'

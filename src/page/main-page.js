@@ -1,29 +1,20 @@
+import { useState } from 'react';
 
-import './main.css';
 
-import friendsService from '../../services/friendsService';
-import { useEffect, useState } from 'react';
-import User from '../user/user';
-import { _BASE_URL } from '../../constant/variable';
-import Gallery from '../gallery/gallery';
+import User from '../components/user/user';
+import Gallery from '../components/gallery/gallery';
+import { Friends } from '../components/widget/friends';
+
+import { _BASE_URL } from '../constant/variable';
+
+import './main-page.css';
 
 
 const Main = ({ props }) => {
 
-    const [friendsUser, setFriends] = useState([]);
     const [gallery, setGallery] = useState(false);
 
-    const { friends } = props;
-
-
-    useEffect(() => {
-        friendsService(`${_BASE_URL}`, friends)
-            .then(item => {
-                console.log('Friends', item)
-                setFriends(item);
-            });
-    }, [friends]);
-
+    console.log('Main', props)
 
     return (
         <div className="main-container">
@@ -40,12 +31,12 @@ const Main = ({ props }) => {
 
                     <div className='friends-container'>
                         <h4>Друзі</h4>
-                        {friendsUser}
+                        <Friends friends={props.friends} url={_BASE_URL} />
                     </div>
                 </aside>
             </div>
 
-            {/* <footer className='footer'>підвал</footer> */}
+
         </div>
     );
 }

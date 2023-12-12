@@ -14,9 +14,8 @@ const Gallery = ({ gallery, id, setGallery }) => {
     }
 
     useEffect(() => {
-        getRequest(`${_BASE_URL}user/${id}/gallery/`, id)
+        getRequest(`user/${id}/gallery/`, id)
             .then(data => {
-
                 setArrGallery(data.map((item, i) => {
                     return (
                         <img
@@ -24,7 +23,7 @@ const Gallery = ({ gallery, id, setGallery }) => {
                             src={`${_BASE_URL}user/${id}/gallery/${item}`}
                             alt="gallery_image"
                             className="img-item"
-                            width='180'
+                            width='200'
                             height='200'
                         />
                     );
@@ -42,9 +41,11 @@ const Gallery = ({ gallery, id, setGallery }) => {
                     onClick={onGallery}
                 >Закрити</button>
             </div>
+
             <div className="gallery">
                 {arrGallery}
             </div>
+
 
         </div>
     );

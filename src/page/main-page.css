@@ -1,11 +1,11 @@
 
 
 .main-container {
-    display: block;
-    position:absolute;
-    top: 84px;
+    display: flex;
+    /* position:absolute; */
+    /* top: 74px; */
     width: 100%;
-    height: 100%;
+    height: 80%;
     background-color: #c8c8c84d;
 }
 
@@ -45,9 +45,4 @@
     height: 100%;
     width: 80%;
     border: 2px black solid;
-}
-
-.footer {
-    height: 10%;
-    background-color: brown;
 }

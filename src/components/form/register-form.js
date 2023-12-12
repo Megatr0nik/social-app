@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './login.css';
+import './register-form.css';
 
 
 const RegisterForm = ({ onSubmit }) => {

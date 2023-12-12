@@ -2,11 +2,11 @@
 
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './components/login/login.js';
-// import Main from './components/main/Main.js';
-import img from './img/bird.png';
+import { AuthorizationPage } from './page/authorization-page';
 
+import img from './img/bird.png';
 import './App.css';
+
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +21,8 @@ function App() {
             <span>BiRdie </span>
             <img src={img} alt="logo" width="32" height="32" />
           </header>
-          <Login />
+          <AuthorizationPage />
+          <footer className='footer'>підвал</footer>
         </>
       } />
 

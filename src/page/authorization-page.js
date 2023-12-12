@@ -1,16 +1,15 @@
 
 import { useState } from 'react';
 
-import './login.css';
-import loginService from '../../services/loginService';
-import registerService from '../../services/registerService';
-import Main from '../main/Main';
-import LoginForm from './login-form';
-import RegisterForm from './register-form';
 
+import Main from './main-page';
+import LoginForm from '../components/form/login-form';
+import RegisterForm from '../components/form/register-form';
+import { postService } from '../services/post-request';
 
+import './authorization-page.css';
 
-const Login = () => {
+export const AuthorizationPage = () => {
 
     const [reg, setReg] = useState(false);
     const [acces, setAcess] = useState(false);
@@ -31,31 +30,25 @@ const Login = () => {
     const onSubmit = (data) => {
 
         if (reg === false) {
-
-            loginService([reg, data])
+            postService(data, '/login')
                 .then(d => {
-
-                    if (typeof d[1] === 'string') {
-
-                        setReg(d[0]);
-                        setAcess(d[0]);
-                        onWarning(d[1]);
+                    if (typeof d === 'string') {
+                        onWarning(d);
                     } else {
-                        setAcess(!d[0]);
-                        setUserData(d[1]);
+                        setAcess(!acces);
+                        setUserData(d);
                     }
                 }).catch(err => console.log(err));
         } else {
-            registerService([reg, data])
+            postService(data, '/register')
                 .then(d => {
-                    if (typeof d[1] === 'string') {
-                        onWarning(d[1]);
+                    if (typeof d === 'string') {
+                        onWarning(d);
                     } else {
-                        setReg(!d[0]);
-                        setAcess(d[0]);
-                        setUserData(d[1]);
+                        setReg(!reg);
+                        setAcess(true);
+                        setUserData(d);
                     }
-
                 })
                 .catch(err => console.log(err));
         }
@@ -93,6 +86,3 @@ const Login = () => {
         return <Main props={userData} />
     }
 }
-
-
-export default Login;
