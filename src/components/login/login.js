@@ -31,12 +31,12 @@ const Login = () => {
     const onSubmit = (data) => {
 
         if (reg === false) {
-            console.log(data)
+
             loginService([reg, data])
                 .then(d => {
 
                     if (typeof d[1] === 'string') {
-                        console.log(d)
+
                         setReg(d[0]);
                         setAcess(d[0]);
                         onWarning(d[1]);

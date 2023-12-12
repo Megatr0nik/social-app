@@ -1,7 +1,7 @@
 .title {
     display: flex;
-    position: relative;
     margin: 10px;
+    top: 0;
     width: fit-content;
     height:fit-content;
     justify-content: center;

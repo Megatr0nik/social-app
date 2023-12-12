@@ -13,17 +13,18 @@ const Main = ({ props }) => {
     const [friendsUser, setFriends] = useState([]);
     const [gallery, setGallery] = useState(false);
 
-    const { avatar, friends, email } = props;
-
+    const { friends } = props;
 
 
     useEffect(() => {
         friendsService(`${_BASE_URL}`, friends)
             .then(item => {
+                console.log('Friends', item)
                 setFriends(item);
             });
     }, [friends]);
-    console.log(gallery)
+
+
     return (
         <div className="main-container">
 
@@ -31,7 +32,7 @@ const Main = ({ props }) => {
             <div className='content-container'>
 
                 <section className="main-content">
-                    {gallery ? <Gallery gallery={props.gallery} id={props._id} setGallery={setGallery} /> : null}
+                    {gallery ? <Gallery gallery={gallery} id={props._id} setGallery={setGallery} /> : null}
                 </section>
                 <aside className='content-right'>
 

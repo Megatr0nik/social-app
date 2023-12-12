@@ -1,22 +1,24 @@
 
 
 .main-container {
-    width: 100vw;
-    height: 100vh;
+    display: block;
+    position:absolute;
+    top: 84px;
+    width: 100%;
+    height: 100%;
     background-color: #c8c8c84d;
 }
 
-.nav-top {
+/* .nav-top {
     display: block;
     width: 100%;
     height: 10%;
     background-color: aquamarine;
-}
+} */
 
 .content-container {
-    position: sticky;
-    width:auto;
     height:100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -39,6 +41,8 @@
 /* ///////////////////////////////////////////////////// */
 
 .main-content {
+    display: flex;
+    height: 100%;
     width: 80%;
     border: 2px black solid;
 }
