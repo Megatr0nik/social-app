@@ -5,13 +5,14 @@
     margin-bottom: 2px;
     margin-top: 2px;
     border: 2px solid;
-    border-color: white;
+    border-color: black;
+    opacity: 1;
     border-radius: 10px;
-    transition: border-color 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 .friend:hover {
-    border-color: rgba(0, 4, 252, 0.267)
+    opacity: 0.6;
 }
 
 .user-img {

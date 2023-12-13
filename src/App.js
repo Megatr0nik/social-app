@@ -22,7 +22,7 @@ function App() {
             <img src={img} alt="logo" width="32" height="32" />
           </header>
           <AuthorizationPage />
-          <footer className='footer'>підвал</footer>
+          <footer className='footer'>--- Megatr0nik ---</footer>
         </>
       } />
 

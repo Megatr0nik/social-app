@@ -5,7 +5,7 @@ import './user.css';
 
 const User = ({ props, url, setGallery, gallery }) => {
 
-    console.log('user', props)
+    // console.log('user', props)
 
     const { avatar, friends, firstName, lastName, _id } = props;
 

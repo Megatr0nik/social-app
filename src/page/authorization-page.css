@@ -1,22 +1,22 @@
 
 .login-container {
-    position: absolute;
+    position: fixed;
     display: flex;
     width: 400px;
     height: fit-content;
-    top: 25%;
+    top: 30%;
     flex-direction: column;
     padding: 10px;
     align-items: center;
     box-sizing: border-box;
+    border-radius: 20px;
 }
 
 .warning-info {
-    display: none;
     color: black;
     margin: 0;
-    position: absolute;
-    top: 20%;
+    margin-top: 5%;
+    justify-content: center;
     animation-name: hide;
     animation-duration: 5.2s;
     animation-timing-function:ease;

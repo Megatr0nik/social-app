@@ -6,12 +6,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./img/background.jpg");
+  /* background-image: url("./img/background.jpg"); */
+  background-color: #c8c8c8;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: fixed;
   user-select: none;
-  
+  width: 100vw;
+  height: 100vh;
 }
 
 h4 {
@@ -25,13 +27,10 @@ code {
 
 #root {
   display: flex;
-  /* position: fixed; */
+  position: static;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  /* width: 100vw; */
- min-height: 100vh;
-  background-color: rgba(228, 219, 172, 0.842);
 }
 
 

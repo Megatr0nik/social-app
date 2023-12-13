@@ -5,12 +5,16 @@ import getRequest from "../../services/get-request.js";
 
 import './gallery.css';
 
-const Gallery = ({ gallery, id, setGallery }) => {
+const Gallery = ({ id, setModalActive }) => {
 
     const [arrGallery, setArrGallery] = useState([]);
 
-    const onGallery = () => {
-        setGallery(!gallery);
+    const onModal = (e) => {
+        console.log(e.target.src)
+        setModalActive({
+            active: true,
+            image: e.target.src
+        });
     }
 
     useEffect(() => {
@@ -23,8 +27,9 @@ const Gallery = ({ gallery, id, setGallery }) => {
                             src={`${_BASE_URL}user/${id}/gallery/${item}`}
                             alt="gallery_image"
                             className="img-item"
-                            width='200'
-                            height='200'
+                            width='100'
+                            height='140'
+                            onClick={onModal}
                         />
                     );
                 }));
@@ -34,19 +39,18 @@ const Gallery = ({ gallery, id, setGallery }) => {
 
     return (
         <div className="gallery-container" >
-            <div className="container-title">
+            {/* <div className="container-title">
                 <h2 className="gallery-title">Галерея</h2>
                 <button
                     className="close-button"
                     onClick={onGallery}
                 >Закрити</button>
-            </div>
+            </div> */}
 
-            <div className="gallery">
-                {arrGallery}
-            </div>
-
-
+            {/* <div className="gallery"> */}
+            {arrGallery}
+            {/* </div> */}
+            {/* <div className="other">Хотьшо...</div> */}
         </div>
     );
 }
