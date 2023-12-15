@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-import './register-form.css';
+import './form.css';
 
 
 const RegisterForm = ({ onSubmit }) => {
+
+    const [file, setFile] = useState({});
     const [newUser, setNewUser] = useState(
         {
             email: '',
@@ -19,14 +21,23 @@ const RegisterForm = ({ onSubmit }) => {
     );
 
     const handleNewUser = (e) => {
-        setNewUser({
-            ...newUser,
-            [e.target.name]: e.target.value
-        })
+
+        if (e.target.name === 'avatar') {
+            setFile(e.target.files[0]);
+            setNewUser({
+                ...newUser,
+                [e.target.name]: e.target.files[0]['name']
+            });
+        } else {
+            setNewUser({
+                ...newUser,
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     const onRegister = () => {
-        onSubmit(newUser);
+        onSubmit(newUser, file);
     }
 
     return (
@@ -39,6 +50,15 @@ const RegisterForm = ({ onSubmit }) => {
                 className="form-container"
                 // method='post'
                 onSubmit={(e) => { console.log(e) }}>
+                <label htmlFor="image_uploads" className='image-uploads'>Choose avatar</label>
+                <input
+                    style={{ display: 'none' }}
+                    id="image_uploads"
+                    name="avatar"
+                    accept=".png, .jpg, .jpeg"
+                    type="file"
+                    onInput={handleNewUser}
+                />
                 First name:<input
                     className="login-input"
                     name='firstName'
@@ -61,6 +81,7 @@ const RegisterForm = ({ onSubmit }) => {
                     autoComplete='none'
                 />
                 Password:<input
+                    required
                     className="login-input"
                     name='pass'
                     type="password"
@@ -74,6 +95,7 @@ const RegisterForm = ({ onSubmit }) => {
                     onChange={handleNewUser}
                     autoComplete='none'
                 />
+
                 <button
                     // type='submit'
                     className='submit-button'

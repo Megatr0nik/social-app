@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { postService } from "../../services/post-request";
+import { postRequest } from "../../services/request";
 
 
 import './friends.css';
+
 
 export const Friends = ({ friends, url }) => {
 
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        postService(friends, '/friends')
+        postRequest(friends, '/friends')
             .then(d => {
                 setElements(d);
             }).catch(err => console.log(err));

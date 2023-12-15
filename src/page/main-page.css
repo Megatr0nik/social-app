@@ -23,6 +23,8 @@
     width: 20%;
     height: fit-content;
     padding: 10px;
+    border: 2px rgba(0, 0, 0, 0.4);
+    border-style:solid none none none;
 }
 
 .friends-container{

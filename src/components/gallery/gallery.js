@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from "react";
 import { _BASE_URL } from "../../constant/variable.js";
-import getRequest from "../../services/get-request.js";
+import { getRequest } from "../../services/request.js";
 
 import './gallery.css';
+
 
 const Gallery = ({ id, setModalActive }) => {
 
@@ -35,7 +36,7 @@ const Gallery = ({ id, setModalActive }) => {
                 }));
             })
             .catch(err => console.log(err));
-    }, [id]);
+    }, []);
 
     return (
         <div className="gallery-container" >

@@ -5,9 +5,10 @@ import { useState } from 'react';
 import Main from './main-page';
 import LoginForm from '../components/form/login-form';
 import RegisterForm from '../components/form/register-form';
-import { postService } from '../services/post-request';
+
 
 import './authorization-page.css';
+import { postRequest } from '../services/request';
 
 export const AuthorizationPage = () => {
 
@@ -27,10 +28,10 @@ export const AuthorizationPage = () => {
         setTimeout(() => setWrong({ warning: false, data: '' }), 5000);
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = (data, file) => {
 
         if (reg === false) {
-            postService(data, '/login')
+            postRequest(data, '/login')
                 .then(d => {
                     if (typeof d === 'string') {
                         onWarning(d);
@@ -40,14 +41,19 @@ export const AuthorizationPage = () => {
                     }
                 }).catch(err => console.log(err));
         } else {
-            postService(data, '/register')
+            postRequest(data, '/register')
                 .then(d => {
+                    console.log(d)
                     if (typeof d === 'string') {
                         onWarning(d);
                     } else {
-                        setReg(!reg);
-                        setAcess(true);
-                        setUserData(d);
+                        postRequest(file, `/user/${d._id}/avatar`)
+                            .then(() => {
+                                setUserData(d);
+                                setReg(!reg);
+                                setAcess(true);
+                            })
+                            .catch(err => console.log(err))
                     }
                 })
                 .catch(err => console.log(err));
@@ -62,7 +68,7 @@ export const AuthorizationPage = () => {
                 >
                     {wrong.data}
                 </h3>}
-                <div className="login-container">
+                <div className="authorization-container">
                     {
                         reg ? <RegisterForm onSubmit={onSubmit} />
                             : <LoginForm onSubmit={onSubmit} />
