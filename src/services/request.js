@@ -6,7 +6,7 @@ import { _BASE_URL } from '../constant/variable';
 
 
 export const postRequest = async (data, uri) => {
-    return await axios.post(uri, data, { baseURL: _BASE_URL })
+    return await axios.post(uri, data, { baseURL: _BASE_URL, ContentType: 'application/json' })
         .then(response => response.data)
         .catch(err => console.error(err))
 }

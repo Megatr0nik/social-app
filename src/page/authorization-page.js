@@ -28,32 +28,33 @@ export const AuthorizationPage = () => {
         setTimeout(() => setWrong({ warning: false, data: '' }), 5000);
     }
 
-    const onSubmit = (data, file) => {
+    const onSubmit = (data) => {
 
+        console.log(data);
+        // postRequest(data, `/user/avatar`)
         if (reg === false) {
-            postRequest(data, '/login')
+            postRequest(data, '/users/login')
                 .then(d => {
                     if (typeof d === 'string') {
                         onWarning(d);
                     } else {
-                        setAcess(!acces);
                         setUserData(d);
+                        setAcess(!acces);
                     }
                 }).catch(err => console.log(err));
         } else {
-            postRequest(data, '/register')
+            postRequest(data, '/users/register')
                 .then(d => {
-                    console.log(d)
                     if (typeof d === 'string') {
                         onWarning(d);
                     } else {
-                        postRequest(file, `/user/${d._id}/avatar`)
-                            .then(() => {
-                                setUserData(d);
-                                setReg(!reg);
-                                setAcess(true);
-                            })
-                            .catch(err => console.log(err))
+                        // postRequest(data, `/users/${d._id}/avatar`)
+                        // .then(() => {
+                        setUserData(d);
+                        setReg(!reg);
+                        setAcess(true);
+                        // })
+                        // .catch(err => console.log(err))
                     }
                 })
                 .catch(err => console.log(err));

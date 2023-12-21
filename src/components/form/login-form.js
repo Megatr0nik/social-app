@@ -9,8 +9,11 @@ const LoginForm = ({ onSubmit }) => {
         pass: ''
     });
 
-    const onLogin = () => {
-        onSubmit(data);
+    const onLogin = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.set('person', JSON.stringify(data));
+        onSubmit(formData);
     }
 
     const handleChange = (e) => {
@@ -23,12 +26,11 @@ const LoginForm = ({ onSubmit }) => {
     return (
         <>
             <h3 className="login-title">Login</h3>
-            <div
-                // action=''
-                // target='_self'
+            <form
+                encType="multipart/form-data"
+                name='reg-form'
                 className="form-container"
-            // method='post'
-            // onSubmit={(e) => { console.log(e) }}
+                onSubmit={onLogin}
             >
                 Login:<input
                     className="login-input"
@@ -45,14 +47,12 @@ const LoginForm = ({ onSubmit }) => {
                     autoComplete='none'
                 />
                 <button
-                    // type='submit'
+                    type='submit'
                     className='submit-button'
-                    // name='reg-form'
-                    onClick={onLogin}
                 >
                     Ok
                 </button>
-            </div>
+            </form>
         </>
 
     );

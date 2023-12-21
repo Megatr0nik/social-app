@@ -5,7 +5,7 @@ import './form.css';
 
 const RegisterForm = ({ onSubmit }) => {
 
-    const [file, setFile] = useState({});
+    const [file, setFile] = useState();
     const [newUser, setNewUser] = useState(
         {
             email: '',
@@ -14,7 +14,7 @@ const RegisterForm = ({ onSubmit }) => {
             phoneNum: '',
             login: '',
             pass: '',
-            avatar: '',
+            avatar: 'default_ava.jpg',
             friends: [],
             post: []
         }
@@ -22,34 +22,43 @@ const RegisterForm = ({ onSubmit }) => {
 
     const handleNewUser = (e) => {
 
-        if (e.target.name === 'avatar') {
-            setFile(e.target.files[0]);
+        const { name, value, files } = e.target;
+
+        if (name === 'avatar') {
+
+            setFile(files[0]);
             setNewUser({
                 ...newUser,
-                [e.target.name]: e.target.files[0]['name']
+                [name]: files[0]['name']
             });
         } else {
             setNewUser({
                 ...newUser,
-                [e.target.name]: e.target.value
+                [name]: value
             })
         }
     }
 
-    const onRegister = () => {
-        onSubmit(newUser, file);
+    const onRegister = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.set('person', JSON.stringify(newUser));
+        formData.set('avatar', file)
+        // console.log(newUser, file)
+        onSubmit(formData);
     }
 
     return (
         <>
             <h3 className="login-title">Registration</h3>
-            <div
-                // action='http://localhost:8000/userdb/'
+            <form
+                // action='/register'
+                encType="multipart/form-data"
                 // target='_self'
-                // name='reg-form'
+                name='reg-form'
                 className="form-container"
                 // method='post'
-                onSubmit={(e) => { console.log(e) }}>
+                onSubmit={onRegister}>
                 <label htmlFor="image_uploads" className='image-uploads'>Choose avatar</label>
                 <input
                     style={{ display: 'none' }}
@@ -97,14 +106,14 @@ const RegisterForm = ({ onSubmit }) => {
                 />
 
                 <button
-                    // type='submit'
+                    type='submit'
                     className='submit-button'
-                    // name='reg-form'
-                    onClick={onRegister}
+                // name='reg-form'
+                // onClick={e => console.log(e)}
                 >
                     Ok
                 </button>
-            </div>
+            </form>
         </>
     );
 }
