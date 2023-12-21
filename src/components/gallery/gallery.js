@@ -19,13 +19,13 @@ const Gallery = ({ id, setModalActive }) => {
     }
 
     useEffect(() => {
-        getRequest(`user/${id}/gallery/`, id)
+        getRequest(`users/${id}/gallery/`, id)
             .then(data => {
                 setArrGallery(data.map((item, i) => {
                     return (
                         <img
                             key={`g${i}`}
-                            src={`${_BASE_URL}user/${id}/gallery/${item}`}
+                            src={`${_BASE_URL}person/${id}/gallery/${item}`}
                             alt="gallery_image"
                             className="img-item"
                             width='100'

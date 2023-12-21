@@ -17,7 +17,7 @@ const Main = ({ props }) => {
     const [gallery, setGallery] = useState(false);
     const [active, setModalActive] = useState({ active: false, image: null });
 
-    // console.log('Main', props)
+    console.log('Main', gallery)
 
     return (
         <div className="main-container">
@@ -35,7 +35,12 @@ const Main = ({ props }) => {
             </section>
             <aside className='content-right'>
 
-                <User props={props} url={_BASE_URL} setGallery={setGallery} gallery={gallery} />
+                <User
+                    props={props}
+                    url={_BASE_URL}
+                    setGallery={setGallery}
+                    gallery={gallery}
+                />
 
                 <div className='friends-container'>
                     <h4>Друзі</h4>

@@ -16,7 +16,7 @@ const User = ({ props, url, setGallery, gallery }) => {
     return (
         <div className='user' onMouseEnter={e => e.preventDefault()}>
             <img
-                src={`${url}user/${_id}/avatar/${avatar}`}
+                src={`${url}person/${_id}/avatar/${avatar}`}
                 alt="img"
                 width='100'
                 height='100'

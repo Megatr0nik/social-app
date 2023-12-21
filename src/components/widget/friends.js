@@ -10,7 +10,9 @@ export const Friends = ({ friends, url }) => {
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        postRequest(friends, '/friends')
+        const formData = new FormData();
+        formData.set('friends', friends);
+        postRequest(formData, 'users/friends')
             .then(d => {
                 setElements(d);
             }).catch(err => console.log(err));
