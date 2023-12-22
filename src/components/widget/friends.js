@@ -12,7 +12,7 @@ export const Friends = ({ friends, url }) => {
     useEffect(() => {
         const formData = new FormData();
         formData.set('friends', friends);
-        postRequest(formData, 'users/friends')
+        postRequest(formData, 'person/friends')
             .then(d => {
                 setElements(d);
             }).catch(err => console.log(err));
@@ -23,7 +23,7 @@ export const Friends = ({ friends, url }) => {
             <div className='friend' key={`u${index}`}>
                 <img
                     className="user-img"
-                    src={`${url}user/${user._id}/avatar/${user.avatar}`}
+                    src={`${url}person/${user._id}/avatar/${user.avatar}`}
                     alt="img"
                     width='50'
                     height='50'

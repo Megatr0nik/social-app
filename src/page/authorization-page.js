@@ -33,7 +33,7 @@ export const AuthorizationPage = () => {
         console.log(data);
         // postRequest(data, `/user/avatar`)
         if (reg === false) {
-            postRequest(data, '/users/login')
+            postRequest(data, '/person/login')
                 .then(d => {
                     if (typeof d === 'string') {
                         onWarning(d);
@@ -43,7 +43,7 @@ export const AuthorizationPage = () => {
                     }
                 }).catch(err => console.log(err));
         } else {
-            postRequest(data, '/users/register')
+            postRequest(data, '/person/register')
                 .then(d => {
                     if (typeof d === 'string') {
                         onWarning(d);

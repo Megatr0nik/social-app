@@ -10,6 +10,7 @@ import { ModalImage } from '../components/modal/modal-image';
 import { _BASE_URL } from '../constant/variable';
 
 import './main-page.css';
+import ModalPost from '../components/modal/modal-post';
 
 
 const Main = ({ props }) => {
@@ -17,19 +18,20 @@ const Main = ({ props }) => {
     const [gallery, setGallery] = useState(false);
     const [active, setModalActive] = useState({ active: false, image: null });
 
-    console.log('Main', gallery)
+    // console.log('Main', gallery)
 
     return (
         <div className="main-container">
-
-
-            {/* <div className='content-container'> */}
+            <Modal
+                active={active.active}
+                content={<ModalPost />}
+            />
 
             <section className="main-content">
                 {gallery ? <Gallery
-                    // gallery={gallery}
+                    gallery={gallery}
                     id={props._id}
-                    // setGallery={setGallery}
+                    setGallery={setGallery}
                     setModalActive={setModalActive}
                 /> : null}
             </section>
@@ -47,8 +49,6 @@ const Main = ({ props }) => {
                     <Friends friends={props.friends} url={_BASE_URL} />
                 </div>
             </aside>
-            {/* </div> */}
-
 
             {active.active ?
                 <Modal

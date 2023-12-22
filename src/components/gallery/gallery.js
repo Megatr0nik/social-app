@@ -1,14 +1,16 @@
 
 import { useEffect, useState } from "react";
 import { _BASE_URL } from "../../constant/variable.js";
-import { getRequest } from "../../services/request.js";
+import { getRequest, postRequest } from "../../services/request.js";
 
 import './gallery.css';
+import EmptyGallery from "./empty-gallery.js";
 
 
-const Gallery = ({ id, setModalActive }) => {
+const Gallery = ({ id, setModalActive, setGallery }) => {
 
     const [arrGallery, setArrGallery] = useState([]);
+    // const [refresh, setRefresh] = useState('');
 
     const onModal = (e) => {
         console.log(e.target.src)
@@ -18,8 +20,18 @@ const Gallery = ({ id, setModalActive }) => {
         });
     }
 
+    const addFoto = (e) => {
+        const formData = new FormData();
+        formData.set('foto', e.target.files[0]);
+        postRequest(formData, `person/${id}/gallery/`)
+            .then(() => setGallery(false))
+            .then(() => setTimeout(() => {
+                setGallery(true)
+            }), 1000);
+    }
+
     useEffect(() => {
-        getRequest(`users/${id}/gallery/`, id)
+        getRequest(`person/${id}/gallery/`, id)
             .then(data => {
                 setArrGallery(data.map((item, i) => {
                     return (
@@ -39,20 +51,27 @@ const Gallery = ({ id, setModalActive }) => {
     }, []);
 
     return (
-        <div className="gallery-container" >
-            {/* <div className="container-title">
-                <h2 className="gallery-title">Галерея</h2>
-                <button
-                    className="close-button"
-                    onClick={onGallery}
-                >Закрити</button>
-            </div> */}
+        <>
+            <div className="gallery-container" >
+                {arrGallery.length ? arrGallery : <EmptyGallery id={id} />}
+            </div>
+            <div className="orientation">
+                <label
+                    htmlFor='image_uploads'
+                    className='add-foto'
+                >Add</label>
+                <input
+                    style={{ display: 'none' }}
+                    id='image_uploads'
+                    name='add-foto'
+                    accept='.png, .jpg, .jpeg'
+                    type='file'
+                    onInput={addFoto}
 
-            {/* <div className="gallery"> */}
-            {arrGallery}
-            {/* </div> */}
-            {/* <div className="other">Хотьшо...</div> */}
-        </div>
+                />
+            </div>
+        </>
+
     );
 }
 
