@@ -3,7 +3,7 @@ import './user.css';
 
 
 
-const User = ({ props, url, setGallery, gallery }) => {
+const User = ({ props, url, setGallery, gallery, setModalPost }) => {
 
     // console.log('user', props)
 
@@ -11,6 +11,11 @@ const User = ({ props, url, setGallery, gallery }) => {
 
     const onGallery = () => {
         setGallery(!gallery);
+    }
+
+    const onPost = (e) => {
+        console.log(e)
+        setModalPost(true);
     }
 
     return (
@@ -46,6 +51,7 @@ const User = ({ props, url, setGallery, gallery }) => {
                 <button
                     className='add-post-button'
                     title='add post'
+                    onClick={onPost}
                 >
                     +
                 </button>

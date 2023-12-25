@@ -16,23 +16,32 @@ import ModalPost from '../components/modal/modal-post';
 const Main = ({ props }) => {
 
     const [gallery, setGallery] = useState(false);
-    const [active, setModalActive] = useState({ active: false, image: null });
+    const [activeImage, setModalImage] = useState({ active: false, image: null });
+    const [activePost, setModalPost] = useState(false);
 
     // console.log('Main', gallery)
 
     return (
         <div className="main-container">
-            <Modal
-                active={active.active}
-                content={<ModalPost />}
-            />
+            {activePost ? <Modal
+                active={activePost}
+                content={
+                    <ModalPost
+                        setModalPost={setModalPost}
+                        activePost={activePost}
+                        id={props._id}
+                    />}
+
+            /> : null
+            }
+
 
             <section className="main-content">
                 {gallery ? <Gallery
                     gallery={gallery}
                     id={props._id}
                     setGallery={setGallery}
-                    setModalActive={setModalActive}
+                    setModalActive={setModalImage}
                 /> : null}
             </section>
             <aside className='content-right'>
@@ -42,6 +51,7 @@ const Main = ({ props }) => {
                     url={_BASE_URL}
                     setGallery={setGallery}
                     gallery={gallery}
+                    setModalPost={setModalPost}
                 />
 
                 <div className='friends-container'>
@@ -50,10 +60,10 @@ const Main = ({ props }) => {
                 </div>
             </aside>
 
-            {active.active ?
+            {activeImage.active ?
                 <Modal
-                    active={active.active}
-                    content={<ModalImage image={active.image} setModalActive={setModalActive} />}
+                    active={activeImage.active}
+                    content={<ModalImage image={activeImage.image} setModalActive={setModalImage} />}
                 /> : null}
         </div>
     );

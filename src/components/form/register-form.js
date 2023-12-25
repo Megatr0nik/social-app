@@ -43,7 +43,7 @@ const RegisterForm = ({ onSubmit }) => {
         e.preventDefault();
         const formData = new FormData();
         formData.set('person', JSON.stringify(newUser));
-        formData.set('avatar', file)
+        formData.set('avatar', file);
         // console.log(newUser, file)
         onSubmit(formData);
     }
